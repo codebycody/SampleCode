@@ -8,51 +8,30 @@ BASE_URL = 'https://sandbox.api.visa.com'
 def pullFunds(S):
     uri = '/visadirect/fundstransfer/v1/pullfundstransactions/'
     body = json.loads('''{
+        "acquirerCountryCode": "840",
+        "acquiringBin": "408999",
+        "amount": "124.02",
         "businessApplicationId": "AA",
-        "merchantCategoryCode": 6012,
-        "pointOfServiceCapability": {
-            "posTerminalType": "4",
-            "posTerminalEntryCapability": "2"
-        },
-        "feeProgramIndicator": "123",
-        "systemsTraceAuditNumber": 300259,
-        "retrievalReferenceNumber": "407509300259",
-        "foreignExchangeFeeTransaction": "10.00",
         "cardAcceptor": {
-            "name": "Acceptor 1",
-            "terminalId": "365539",
-            "idCode": "VMT200911026070",
             "address": {
-                "state": "CA",
-                "county": "081",
                 "country": "USA",
+                "county": "San Mateo",
+                "state": "CA",
                 "zipCode": "94404"
-            }
+            },
+            "idCode": "ABCD1234ABCD123",
+            "name": "Visa Inc. USA-Foster City",
+            "terminalId": "ABCD1234"
         },
-        "magneticStripeData": {
-            "track1Data": "1010101010101010101010101010"
-        },
-        "senderPrimaryAccountNumber": "4005520000011126",
+        "cavv": "0700100038238906000013405823891061668252",
+        "foreignExchangeFeeTransaction": "11.99",
+        "localTransactionDateTime": "2016-04-16T14:44:04",
+        "retrievalReferenceNumber": "330000550000",
+        "senderCardExpiryDate": "2015-10",
         "senderCurrencyCode": "USD",
-        "surcharge": "2.00",
-        "localTransactionDateTime": "2021-10-26T21:32:52",
-        "senderCardExpiryDate": "2013-03",
-        "pinData": {
-            "pinDataBlock": "1cd948f2b961b682",
-            "securityRelatedControlInfo": {
-                "pinBlockFormatCode": 1,
-                "zoneKeyIndex": 1
-            }
-        },
-        "cavv": "0000010926000071934977253000000000000000",
-        "pointOfServiceData": {
-            "panEntryMode": "90",
-            "posConditionCode": "0",
-            "motoECIIndicator": "0"
-        },
-        "acquiringBin": 409999,
-        "acquirerCountryCode": "101",
-        "amount": "112.00"
+        "senderPrimaryAccountNumber": "4895142232120006",
+        "surcharge": "11.99",
+        "systemsTraceAuditNumber": "451001"
     }''')
     r = S.post(BASE_URL + uri, json=body)
     return r
